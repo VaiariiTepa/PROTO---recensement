@@ -458,31 +458,6 @@ const INITIAL_BUSINESSES = [{"id": "PAEA-0001", "nom": "PHARMACIE DE PAEA", "nom
       if (e.target.id === 'bizModal') closeModal();
     }
 
-    function openImportModal() {
-      document.getElementById('importModal').classList.add('active');
-    }
-
-    function closeImportModal() {
-      document.getElementById('importModal').classList.remove('active');
-    }
-
-    function closeImportOnBackdrop(e) {
-      if (e.target.id === 'importModal') closeImportModal();
-    }
-
-    function handleCSVFile(event) {
-      const file = event.target.files[0];
-      if (!file) return;
-
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        const text = e.target.result;
-        const lines = text.split(/\r\n|\n/);
-        showToast(`✅ Fichier CSV lu : ${lines.length - 1} lignes détectées`);
-        closeImportModal();
-      };
-      reader.readAsText(file);
-    }
 
     function switchView(viewName, tabEl) {
       document.querySelectorAll('.view-pane').forEach(v => v.style.display = 'none');
@@ -585,7 +560,7 @@ const INITIAL_BUSINESSES = [{"id": "PAEA-0001", "nom": "PHARMACIE DE PAEA", "nom
     }
 
     document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') { closeModal(); closeImportModal(); }
+      if (e.key === 'Escape') { closeModal(); }
     });
 
     window.onload = init;
